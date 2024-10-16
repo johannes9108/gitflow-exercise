@@ -31,7 +31,7 @@ def incrementVersion(version):
     return version
 def pushRelease(version):
     try:
-        subprocess.run(["git", "push", "origin", f"release-{version}"])
+        subprocess.run(["git", "push","-u", "origin", f"release-{version}"])
     except Exception as error:
         return f"Ett fel uppstod: {error}"
 
