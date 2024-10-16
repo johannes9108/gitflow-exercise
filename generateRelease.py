@@ -13,7 +13,7 @@ def generateRelease():
         newVersion = incrementVersion(currentVersion)
         subprocess.run(["git", "checkout","-b",f"release-{newVersion}"])
         saveNewVersionToFile(newVersion)
-        subprocess.run(["git", "add", ".", f"release-{newVersion}"])
+        subprocess.run(["git", "add", "."])
         subprocess.run(["git", "commit", "-m", f"Release {newVersion}"])
         return newVersion
     except Exception as error:
