@@ -22,9 +22,15 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
-      - uses: de-vri-es/setup-git-credentials@v2
-        with:
-          credentials: ${{secrets.GIT_CREDENTIALS}}
+
+      - name: Authenticate with GitHub
+        env:
+          GH_TOKEN: ${{ secrets.GIT_CREDENTIALS }}
+        run: |
+          echo "Authenticating with GitHub"
+          git config --global user.name johannes9108
+          git config --global user.email johannes91.hedman@gmail.com
+          git remote set-url origin https://x-access-token:${GH_CREDENTIALS}@github.com/${{ github.repository }}.git
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
